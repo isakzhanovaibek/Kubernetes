@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-Deployment
+  labels:
+    app: my-kubernetes-application
+    owner: aibekisakzhanov
+    env: test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      project: eks
+  template:
+    metadata:
+      labels:
+        project: eks
+    spec:
+      containers:
+        - name: eks-web
+          image: 524303463046.dkr.ecr.eu-central-1.amazonaws.com/nginx:latest
+          ports:
+            - containerPort: 80
